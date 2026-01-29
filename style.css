@@ -278,11 +278,11 @@ img { width: 100%; height: 100%; object-fit: cover; }
   margin-bottom: 28px;
 }
 
-/* 이미지 경로 설정 예시 */
-.img-01 { background-image: url('main_brand_01.png'); }
-.img-02 { background-image: url('main_brand_02.png'); }
-.img-03 { background-image: url('main_brand_03.png'); }
-.img-04 { background-image: url('main_brand_04.png'); }
+/* 이미지 경로 설정 */
+.img-01 { background-image: url('image/image21.png'); }
+.img-02 { background-image: url('image/image22.png'); }
+.img-03 { background-image: url('image/image23.png'); }
+.img-04 { background-image: url('image/image24.png'); }
 
 .brand-desc {
   font-family: 'NotoSansKR', sans-serif;
