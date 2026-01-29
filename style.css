@@ -54,11 +54,50 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; }
 .logo-text { margin-left: 10px; color: #fff; font-family: 'Noto Sans KR', sans-serif; font-size: 24px; font-weight: 800; }
 
 /* 메인 슬라이드 */
-.main-visual { width: 100%; height: calc(100vh - 40px); margin-top: 40px; position: relative; }
+.main-visual { 
+    width: 100%;
+    height: 100vh;
+    margin-top: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+
+.swiper, .swiper-wrapper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    width: 100%;
+    height: 90%;
+    overflow: hidden;
+}
+
+/* 폭이 1000px 이상일 때 높이 auto로 원본 비율 유지 */
+@media (min-width: 1000px) {
+    .main-visual { 
+        height: auto; 
+        width: 100%;
+        max-width: 1920px;
+        margin: 40px auto 0;
+    }
+}
+
+/* swiper 슬라이드 이미지 설정 */
+.swiper-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
 
 .scroll-down {
     position: absolute;
-    bottom: 30px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
     width: 50px; 
@@ -116,8 +155,8 @@ span, p { display: block; }
 img { width: 100%; height: 100%; object-fit: cover; }
 
 /* 1st Article */
-.section-news { height: 963px; margin-top: 900px; padding-top: 150px; background-color: #fff; text-align: center; }
-.Heading-2- { width: 100%; font-family: 'Noto Sans KR'; font-size: 61.5px; font-weight: bold; line-height: 1.33; margin: 82px 0 40px; }
+.section-news { height: 963px; margin-top: -250px; padding-top: 150px; background-color: #fff; text-align: center; }
+.Heading-2- { width: 100%; font-family: 'Noto Sans KR'; font-size: 61.5px; font-weight: bold; line-height: 1.33; margin: 82px 0 40px; text-align: center; }
 
 .card-container { display: flex; justify-content: center; gap: 20px; }
 .news-card { width: 458px; text-align: left; }
@@ -126,22 +165,49 @@ img { width: 100%; height: 100%; object-fit: cover; }
 .news-title { font-family: 'Noto Sans KR'; font-size: 20px; font-weight: bold; line-height: 1.4; }
 
 /* 2nd Article */
-.section-intro { height: auto; padding-bottom: 100px; }
-.main-visual-wrap { position: relative; width: 1604px; margin: 122px auto; }
-.main-image { width: 100%; height: 890.9px; background: #ddd; }
+.section-intro { height: auto; padding-bottom: 200px; text-align: center; }
+.main-visual-wrap { position: relative; width: 1604px; margin: 0 auto 80px auto; }
+.main-image { 
+    width: 100%; 
+    height: 890.9px; 
+    background: #ddd; 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 1200px) {
+    .main-visual-wrap { width: 90%; }
+}
+
+@media (max-width: 768px) {
+    .main-visual-wrap { width: 100%; }
+    .main-image { height: 400px; }
+}
 .Gradient { position: absolute; opacity: 0.24; mix-blend-mode: overlay; z-index: 2; }
 .Gradient.left { width: 110px; height: 110px; left: -50px; top: 145px; background-image: linear-gradient(135deg, #fff 0%, #000); }
 .Gradient.right { width: 166px; height: 80px; right: -50px; bottom: 150px; background-image: linear-gradient(135deg, #000 0%, #fff 100%); }
 
-.Overlay { position: absolute; bottom: -100px; left: 50%; transform: translateX(-50%); width: 1300px; height: 326px; 
+.Overlay { position: absolute; bottom: -300px; left: 50%; transform: translateX(-50%); width: 1300px; max-width: 90%; height: 326px; 
            background-color: rgba(255, 255, 255, 0.5); display: flex; padding: 50px; box-sizing: border-box; backdrop-filter: blur(10px); }
+
+/* Overlay 반응형 스타일 */
+@media (max-width: 1400px) {
+    .Overlay { width: 90%; }
+}
+
+@media (max-width: 768px) {
+    .Overlay { width: 95%; padding: 30px; height: auto; flex-direction: column; }
+}
+
 .overlay-card { flex: 1; text-align: center; padding: 0 20px; }
 .Horizontal-Divider { width: 100%; height: 2px; border-bottom: solid 2px #d70000; margin-bottom: 27px; }
 .Strong- { font-size: 22px; font-weight: bold; color: #212529; margin-bottom: 23px; }
 .desc { font-size: 22px; color: #454545; line-height: 1.64; }
 
 /* 3rd Article */
-.section-live { height: 1081px; background-color: #f6f6f6; padding: 70px 0 80px; text-align: center; }
+.section-live { height: 1081px; background-color: #f6f6f6; padding: 70px 0 80px; text-align: center; margin-top: 100px; }
 .Heading-2-NLive- { font-family: 'Red Hat Display'; font-size: 62px; font-weight: 600; margin-bottom: 32px; }
 .live-container { display: flex; align-items: center; justify-content: center; gap: 30px; }
 .iphone-border { width: 320px; height: 644px; border: solid 10px #333; border-radius: 50px; padding: 20px; background: #fff; position: relative; }
@@ -154,8 +220,74 @@ img { width: 100%; height: 100%; object-fit: cover; }
 .main-full-image { width: 1600px; height: 900px; margin: 0 auto; background: #f0f0f0; }
 
 /* 공통 링크 스타일 */
-.custom-link { display: inline-block; width: 270px; height: 60px; border-radius: 30px; border: solid 1px #ca0202; 
-               text-decoration: none; margin-top: 50px; line-height: 60px; transition: 0.3s; }
+.custom-link { display: flex; align-items: center; justify-content: center; width: 270px; height: 60px; border-radius: 30px; border: solid 1px #ca0202; 
+               text-decoration: none; margin: 50px auto 0; transition: 0.3s; }
 .custom-link:hover { background: #ca0202; }
-.link-text { font-size: 16.9px; font-weight: bold; color: #ca0202; }
+.link-text { font-size: 16.9px; font-weight: bold; color: #ca0202; text-align: center; }
 .custom-link:hover .link-text { color: #fff; }
+
+/* Brand Section */
+.brand-section {
+  width: 100%;
+  background-color: #f6f6f6;
+  padding: 90px 0; /* 상하 여백 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: -99px;
+}
+
+.brand-container {
+  display: flex;
+  gap: 30px; /* 카드 사이 간격 */
+  max-width: 1200px; /* 실제 콘텐츠가 보여질 너비 */
+  width: 90%;
+}
+
+.brand-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.red-divider {
+  width: 210px;
+  height: 2px;
+  background-color: #d70000;
+  margin-bottom: 20px;
+}
+
+.brand-title {
+  font-family: 'RedHatDisplay', sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+  color: #212529;
+  margin-bottom: 35px;
+  text-transform: uppercase;
+}
+
+.brand-img {
+  width: 180px;
+  height: 180px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-bottom: 28px;
+}
+
+/* 이미지 경로 설정 예시 */
+.img-01 { background-image: url('main_brand_01.png'); }
+.img-02 { background-image: url('main_brand_02.png'); }
+.img-03 { background-image: url('main_brand_03.png'); }
+.img-04 { background-image: url('main_brand_04.png'); }
+
+.brand-desc {
+  font-family: 'NotoSansKR', sans-serif;
+  font-size: 22px;
+  line-height: 1.64;
+  color: #777;
+  word-break: keep-all;
+}
