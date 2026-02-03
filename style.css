@@ -34,7 +34,7 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; }
 .gnb-wrapper { height: 80px; transition: 0.3s; color: #fff; font-family: 'Noto Sans KR', sans-serif; font-weight: 800; display: flex; justify-content: center; } /* 기본 글자색 흰색 */
 .gnb { display: flex; gap: 30px; list-style: none; }
 .gnb a { color: #fff; text-decoration: none; font-family: 'Noto Sans KR', sans-serif; font-weight: 800; }
-.util-menu { margin-left: auto; display: flex; align-items: center; gap: 15px; }
+.util-menu { margin-left: 50px; display: flex; align-items: center; gap: 15px; }
 .util-menu a { color: #fff; text-decoration: none; font-family: 'Noto Sans KR', sans-serif; font-weight: 800; }
 .util-menu .icon { width: 22px; cursor: pointer; }
 
@@ -44,7 +44,14 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; }
 /* GNB Wrapper Hover 시 글자색 변화 */
 .gnb-wrapper:hover { background: #fff; }
 .gnb-wrapper:hover .gnb a { color: #000; }
-.gnb-wrapper:hover .util-menu a { color: #000; }
+.gnb-wrapper:hover .util-menu a { 
+    color: #000;
+    background: linear-gradient(#fff, #fff) padding-box, 
+                linear-gradient(to right, #FFD700, #FF69B4, #FF0000) border-box;
+    padding: 6px 14.7px 6px 15px;
+    border: 2px solid transparent;
+    border-radius: 30px;
+}
 .gnb-wrapper:hover .logo-text { color: #000; }
 
 /* Hover 시 아이콘 이미지 변경 */
@@ -278,7 +285,7 @@ img { width: 100%; height: 100%; object-fit: cover; }
 .live-container { display: flex; align-items: center; justify-content: center; gap: 30px; }
 .iphone-border { width: 320px; height: 644px; border: solid 10px #333; border-radius: 50px; padding: 20px; background: #fff; position: relative; }
 .Background-img { width: 263px; height: 263px; margin: 170px auto 0; }
-#INSTAGRAM { font-family: 'Red Hat Display'; font-size: 18px; font-weight: 600; margin-top: 33px; text-align: left; }
+#INSTAGRAM { font-family: 'Red Hat Display'; font-size: 18px; font-weight: 600; margin-top: 33px; margin-bottom: 10px; text-align: left; }
 .live-sub-img { width: 200px; height: 200px; background: #eee; border-radius: 20px; }
 
 /* 4th Article */
@@ -796,4 +803,13 @@ img { width: 100%; height: 100%; object-fit: cover; }
 .vector-icon img {
   width: 45px;
   height: 45px;
+}
+
+/* N.Live 섹션 스타일 */
+.Emphasis {
+  text-align: left;
+}
+
+.date {
+  text-align: left;
 }

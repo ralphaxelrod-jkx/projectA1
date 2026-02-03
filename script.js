@@ -1,3 +1,8 @@
+// 0. 페이지 로드시 안내 메시지 표시
+window.addEventListener('load', () => {
+    alert('본 웹페이지는 실무학습용으로 제작된 웹페이지임을 알려드립니다');
+});
+
 // 1. AOS 애니메이션 초기화
 AOS.init();
 
@@ -37,6 +42,19 @@ const cardSwiper = new Swiper('.cardSwiper', {
         0: { slidesPerView: 1 }
     }
 });
+
+// scroll-down 클릭 시 메인 슬라이드 하단으로 스크롤
+const scrollDownBtn = document.querySelector('.scroll-down');
+if (scrollDownBtn) {
+    scrollDownBtn.addEventListener('click', () => {
+        const swiperSlide = document.querySelector('.swiper-slide');
+        if (swiperSlide) {
+            // swiper-slide의 하단 위치 계산
+            const slideBottom = swiperSlide.offsetTop + swiperSlide.offsetHeight + 50;
+            window.scrollTo({ top: slideBottom, behavior: 'smooth' });
+        }
+    });
+}
 
 // 최상단 이동 기능
 const topBtn = document.getElementById('top-btn');
