@@ -14,15 +14,17 @@ const mainSwiper = new Swiper('.mainSwiper', {
 
 // 정지 버튼 제어
 const stopBtn = document.querySelector('.stop-btn');
-stopBtn.addEventListener('click', () => {
-    if (stopBtn.textContent === 'II') {
-        mainSwiper.autoplay.stop();
-        stopBtn.textContent = '▶';
-    } else {
-        mainSwiper.autoplay.start();
-        stopBtn.textContent = 'II';
-    }
-});
+if (stopBtn) {
+    stopBtn.addEventListener('click', () => {
+        if (stopBtn.textContent === 'II') {
+            mainSwiper.autoplay.stop();
+            stopBtn.textContent = '▶';
+        } else {
+            mainSwiper.autoplay.start();
+            stopBtn.textContent = 'II';
+        }
+    });
+}
 
 // 3. 카드 뉴스 슬라이드 (좌우 드래그)
 const cardSwiper = new Swiper('.cardSwiper', {
@@ -36,15 +38,26 @@ const cardSwiper = new Swiper('.cardSwiper', {
     }
 });
 
-// 4. 스크롤 제어 (헤더 색상 및 탑버튼)
+// 최상단 이동 기능
+const topBtn = document.getElementById('top-btn');
+if (topBtn) {
+    topBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
+
+// 4. 스크롤 제어 (헤더 색상, 탑버튼, 퀵메뉴)
 const header = document.querySelector('#main-header');
 const topBar = document.querySelector('.top-bar');
 const gnbWrapper = document.querySelector('.gnb-wrapper');
-const topBtn = document.getElementById('top-btn');
+const quickMenu = document.querySelector('.quick-menu');
 let lastScrollY = 0;
 
 window.addEventListener('scroll', () => {
     const currentScrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight;
+    const footerHeight = 400; // footer 대략적인 높이
+    const hidePoint = docHeight - window.innerHeight - footerHeight; // footer 400px 전에 숨기기
     
     // 100px 이상 스크롤 시 헤더 요소 숨김
     if (currentScrollY > 100) {
@@ -63,16 +76,20 @@ window.addEventListener('scroll', () => {
     }
 
     // 탑버튼 표시 여부
-    if (currentScrollY > 300) {
+    if (topBtn && currentScrollY > 300) {
         topBtn.style.display = 'block';
-    } else {
+    } else if (topBtn) {
         topBtn.style.display = 'none';
+    }
+
+    // 퀵메뉴 - 푸터에 가까워지면 숨김
+    if (quickMenu) {
+        if (currentScrollY > hidePoint) {
+            quickMenu.classList.add('hide');
+        } else {
+            quickMenu.classList.remove('hide');
+        }
     }
     
     lastScrollY = currentScrollY;
-});
-
-// 최상단 이동 기능
-topBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
 });

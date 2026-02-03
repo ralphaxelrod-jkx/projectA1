@@ -47,6 +47,12 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; }
 .gnb-wrapper:hover .util-menu a { color: #000; }
 .gnb-wrapper:hover .logo-text { color: #000; }
 
+/* Hover 시 아이콘 이미지 변경 */
+.gnb-wrapper:hover .search-icon { filter: brightness(0); }
+.gnb-wrapper:hover .login-icon { filter: brightness(0); }
+.gnb-wrapper:hover .lang-icon { filter: brightness(0); }
+.gnb-wrapper:hover .menu-icon { filter: brightness(0); }
+
 /* 로고 스타일 */
 .logo { display: flex; align-items: center; margin-right: 50px; }
 .logo a { display: flex; align-items: center; text-decoration: none; }
@@ -130,7 +136,8 @@ body { font-family: 'Noto Sans KR', sans-serif; overflow-x: hidden; }
 }
 
 /* 퀵메뉴 */
-.quick-menu { position: fixed; right: 20px; bottom: 30px; z-index: 999; display: flex; flex-direction: column; gap: 10px; }
+.quick-menu { position: fixed; right: 20px; bottom: 30px; z-index: 999; display: flex; flex-direction: column; gap: 10px; opacity: 1; transition: opacity 0.3s ease; }
+.quick-menu.hide { opacity: 0; pointer-events: none; }
 .quick-menu img { width: 45px; }
 #top-btn { display: none; background: none; border: none; cursor: pointer; }
 
@@ -155,7 +162,7 @@ span, p { display: block; }
 img { width: 100%; height: 100%; object-fit: cover; }
 
 /* 1st Article */
-.section-news { height: 963px; margin-top: -250px; padding-top: 150px; background-color: #fff; text-align: center; }
+.section-news { height: 963px; margin-top: -180px; padding-top: 150px; background-color: #fff; text-align: center; }
 .Heading-2- { width: 100%; font-family: 'Noto Sans KR'; font-size: 61.5px; font-weight: bold; line-height: 1.33; margin: 82px 0 40px; text-align: center; }
 
 /* Heading-2- 반응형 스타일 */
@@ -167,31 +174,81 @@ img { width: 100%; height: 100%; object-fit: cover; }
     .Heading-2- { font-size: 32px; }
 }
 
-.card-container { display: flex; justify-content: center; gap: 20px; }
+.card-container { display: flex; justify-content: center; gap: 40px; margin-top: 100px; }
 .news-card { width: 458px; text-align: left; }
+.news-card:first-child, .news-card:last-child { margin-top: 100px; }
 .news-card .Image { height: 302px; margin-bottom: 17px; background: #eee; }
-.NEWS { font-family: 'Red Hat Display'; font-size: 14px; font-weight: 600; color: #049ae0; margin-bottom: 10px; }
-.news-title { font-family: 'Noto Sans KR'; font-size: 20px; font-weight: bold; line-height: 1.4; }
+.NEWS { 
+  width: 70.7px;
+  height: 30px;
+  margin: 4px 245.8px 20.1px 40px;
+  padding: 6px 14.7px 6px 15px;
+  border-radius: 15px;
+  border: solid 1px #049ae0;
+  font-family: 'Red Hat Display';
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.43;
+  letter-spacing: normal;
+  text-align: center;
+  color: #049ae0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.news-title { font-family: 'Noto Sans KR'; font-size: 20px; font-weight: bold; line-height: 1.4; width: 380px; margin-left: 40px; }
+
 
 /* 2nd Article */
-.section-intro { height: auto; padding-bottom: 200px; text-align: center; }
-.main-visual-wrap { position: relative; width: 1604px; margin: 0 auto 80px auto; }
-.main-image { 
-    width: 100%; 
-    height: 890.9px; 
-    background: #ddd; 
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+.section-intro {
+    height: auto;
+    padding-bottom: 200px;
+    text-align: center;
+    margin-top: 150px;
+    position: relative;
+    /* 내부 요소들을 정렬하기 위해 추가 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+.Heading-2- {
+    position: relative;
+    z-index: 20;       /* 이미지보다 확실히 높게 */
+    margin-bottom: -40px; /* 음수 마진으로 글자를 아래(이미지 쪽)로 내림 */
+    color: black;       /* 이미지 위에서 잘 보이도록 흰색 추천 (필요시 수정) */
+    line-height: 1.4;
+}
+
+.main-visual-wrap {
+    position: relative;
+    width: 100%;
+    z-index: 1;        /* 글자보다 낮게 */
+    overflow: visible; /* 글자가 잘리지 않도록 visible 설정 */
+}
+
+.main-image { 
+    width: 1359px; 
+    height: 890.9px; 
+    margin: 0 auto;
+    background: #ddd; 
+}
+
+.main-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 /* 반응형 스타일 */
 @media (max-width: 1200px) {
-    .main-visual-wrap { width: 90%; }
+    .main-visual-wrap { width: 90%; overflow: hidden; margin: 0 auto 80px; }
 }
 
 @media (max-width: 768px) {
-    .main-visual-wrap { width: 100%; }
+    .main-visual-wrap { width: 100%; overflow: hidden; margin: 0 auto 80px; }
     .main-image { height: 400px; }
 }
 .Gradient { position: absolute; opacity: 0.24; mix-blend-mode: overlay; z-index: 2; }
@@ -220,13 +277,21 @@ img { width: 100%; height: 100%; object-fit: cover; }
 .Heading-2-NLive- { font-family: 'Red Hat Display'; font-size: 62px; font-weight: 600; margin-bottom: 32px; }
 .live-container { display: flex; align-items: center; justify-content: center; gap: 30px; }
 .iphone-border { width: 320px; height: 644px; border: solid 10px #333; border-radius: 50px; padding: 20px; background: #fff; position: relative; }
-.Background-img { width: 263px; height: 263px; margin: 0 auto; }
+.Background-img { width: 263px; height: 263px; margin: 170px auto 0; }
 #INSTAGRAM { font-family: 'Red Hat Display'; font-size: 18px; font-weight: 600; margin-top: 33px; text-align: left; }
 .live-sub-img { width: 200px; height: 200px; background: #eee; border-radius: 20px; }
 
 /* 4th Article */
-.section-sustainability { padding: 100px 0; text-align: center; }
-.main-full-image { width: 1600px; height: 900px; margin: 0 auto; background: #f0f0f0; }
+.section-sustainability { padding: 50px 0; text-align: center; margin-top: -50px; }
+.section-sustainability:first-of-type { margin-top: 250px; }
+.main-full-image { width: 100%; height: 810px; margin: 0 auto; background: #f0f0f0; overflow: hidden; }
+
+.main-full-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+}
 
 /* main-full-image 반응형 스타일 */
 @media (max-width: 1200px) {
@@ -239,7 +304,11 @@ img { width: 100%; height: 100%; object-fit: cover; }
 
 /* 공통 링크 스타일 */
 .custom-link { display: flex; align-items: center; justify-content: center; width: 270px; height: 60px; border-radius: 30px; border: solid 1px #ca0202; 
-               text-decoration: none; margin: 50px auto 0; transition: 0.3s; }
+               text-decoration: none; margin: 150px auto 0; transition: 0.3s; }
+.section-sustainability:first-of-type .custom-link { margin-top: 300px; }
+.section-sustainability:last-of-type .custom-link { position: relative; margin: -230px auto 0; z-index: 15; }
+.footer-section .custom-link { margin: 0 auto 50px; }
+.brand-section .custom-link { margin-top: 100px; }
 .custom-link:hover { background: #ca0202; }
 .link-text { font-size: 16.9px; font-weight: bold; color: #ca0202; text-align: center; }
 .custom-link:hover .link-text { color: #fff; }
@@ -261,6 +330,7 @@ img { width: 100%; height: 100%; object-fit: cover; }
   gap: 30px; /* 카드 사이 간격 */
   max-width: 1200px; /* 실제 콘텐츠가 보여질 너비 */
   width: 90%;
+  margin-top: 70px;
 }
 
 .brand-card {
@@ -360,6 +430,7 @@ img { width: 100%; height: 100%; object-fit: cover; }
   font-family: 'NotoSansKR', sans-serif;
   font-size: 18px;
   color: #fff;
+  white-space: nowrap;
 }
 
 .price-change {
@@ -421,23 +492,34 @@ img { width: 100%; height: 100%; object-fit: cover; }
 }
 
 /* 마지막 섹션 이미지 크기 조정 */
+.section-sustainability:last-of-type h2.Heading-2- {
+  position: relative;
+  z-index: 20;
+}
+
 .section-sustainability:last-of-type .main-full-image {
-  width: 55%;
-  height: auto;
-  margin: 150px auto;
+  width: 100%;
+  height: 900px;
+  margin: 0px auto 150px;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  background: #fff;
 }
 
 .section-sustainability:last-of-type .main-full-image img {
-  width: 100%;
-  height: auto;
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* 오버레이 섹션 전체 레이아웃 */
 .overlay-section {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, calc(-50% - 70px));
   display: flex;
   justify-content: center;
   align-items: center;
@@ -448,7 +530,7 @@ img { width: 100%; height: 100%; object-fit: cover; }
 
 .overlay-container {
   display: flex;
-  width: 900px;
+  width: 1200px;
   position: relative;
 }
 
@@ -456,12 +538,17 @@ img { width: 100%; height: 100%; object-fit: cover; }
 .overlay-left {
   display: flex;
   gap: 10px;
+  margin-left: 50px;
+  margin-right: 150px;
+  margin-top: -100px;
+
 }
 
 .vertical-divider {
   width: 1px;
   height: 100%;
   background-color: #ddd;
+  margin-top: -30px;
 }
 
 .country-list {
@@ -486,34 +573,42 @@ img { width: 100%; height: 100%; object-fit: cover; }
 
 /* 가운데: 상세 정보 스타일 */
 .overlay-center {
-  flex: 1;
+  flex: 0.9;
   padding-left: 30px;
+  padding-right: 40px;
+  margin-right: 100px;
+  margin-top: -100px;
 }
 
 .pin-icon img {
   width: 30px;
   height: 38px;
-  margin-bottom: 11px;
+  margin-bottom: 91px;
 }
 
 .content-title {
-  width: 350px;
+  width: 360px;
+  height: 38px;
   font-family: 'NotoSansKR', sans-serif;
-  font-size: 24px;
+  font-size: 27px;
   font-weight: bold;
   line-height: 1.21;
   color: #212529;
-  margin: 11px 0 20px 0;
+  margin: -50px 0 20px 0;
+  white-space: nowrap;
+  
 }
 
 .content-desc {
   width: 360px;
+  height: 60px;
   font-family: 'NotoSansKR', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: normal;
   line-height: 1.64;
   color: #666;
   margin: 20px 0 0;
+  text-align: left;
 }
 
 /* 오른쪽: 매출 지표 스타일 */
@@ -522,19 +617,183 @@ img { width: 100%; height: 100%; object-fit: cover; }
   flex-direction: column;
   align-items: flex-start;
   margin-left: auto;
+  margin-top: -100px;
+  padding-left: 20px;
 }
 
 .stat-image img {
-  width: 220px;
-  height: 157px;
+  width: 286px;
+  height: 204px;
   object-fit: contain;
 }
 
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
 .stat-label {
-  width: 164px;
-  font-family: 'NotoSansKR', sans-serif;
+  width: 264px;
+  height: 30px;
+  font-family: 'Noto Sans KR', sans-serif;
   font-size: 18px;
-  color: #212529;
-  margin-top: 26px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
   line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+  color: #212529;
+  margin-top: 15px;
+}
+
+.stat-value-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6.7px;
+}
+
+.sales {
+  width: auto;
+  height: auto;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.19;
+  letter-spacing: normal;
+  text-align: left;
+  color: #212529;
+}
+
+.exceed {
+  width: 100.4px;
+  height: 18px;
+  font-family: 'Noto Sans KR', sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.33;
+  letter-spacing: normal;
+  text-align: left;
+  color: #212529;
+}
+
+/* 전체 푸터 설정 */
+.footer2 {
+  width: 100%;
+  max-width: 1920px;
+  min-height: 280px;
+  margin: 0 auto 0;
+  padding: 60px 0;
+  border-top: 1px solid #e8e8e8;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* 좌측 영역 공통 */
+.footer-row {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.footer-row span {
+  font-size: 15px;
+  color: #333;
+  margin-right: 14px;
+}
+
+/* 강조 스타일 */
+.privacy-policy {
+  font-weight: bold;
+  color: #539a00 !important;
+}
+
+.special-portal {
+  font-weight: bold;
+  color: #ff6216 !important;
+}
+
+.FAQ {
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+/* 기업 정보 줄 (회색 폰트) */
+.info-row span {
+  font-size: 14px;
+  color: #666;
+}
+
+.company-name {
+  font-weight: bold;
+}
+
+.label::after {
+  content: "";
+}
+
+.phone {
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+/* 카피라이트 */
+.copyright-row {
+  margin-top: 30px;
+}
+
+.copyright {
+  color: #666;
+  font-size: 14px;
+  font-family: 'Red Hat Display', sans-serif;
+}
+
+/* 우측 영역 */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.family-link {
+  width: 240px;
+  height: 46px;
+  border: 2px solid #e8e8e8;
+  border-radius: 23px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-bottom: 29px;
+  font-size: 15px;
+  color: #333;
+}
+
+.sns-icons {
+  display: flex;
+  gap: 10px;
+  margin-right: 13px;
+}
+
+.vector-icon {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.vector-icon img {
+  width: 45px;
+  height: 45px;
 }
